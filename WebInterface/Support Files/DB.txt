@@ -1,0 +1,102 @@
+create table passcode(
+    passcode varchar(50),
+    unique key (passcode))
+
+
+create table users(
+    first_name varchar(50),
+    last_name varchar(50),
+    username varchar(50),
+    password varchar(50),
+    question varchar(50),
+    answer varchar(50),
+    primary key (username))
+
+
+create table courses( 
+pageID int(6) auto_increment,
+username varchar(50), 
+coursename varchar(50), 
+unique key (pageID), 
+primary key (username,coursename), 
+foreign key (username) references users(username) on delete cascade)
+
+
+create table terms(
+    pageID int(6),
+    termID int(6) auto_increment,
+    term varchar(50),
+    unique key (termID),
+    primary key (pageID,term),
+    foreign key (pageID) references courses(pageID) on delete cascade)
+
+
+create table test(
+    termID int(6),
+    testName varchar(50),
+    testID int(6) auto_increment,
+    testType varchar(50),
+    pageID int(6),
+    unique key (testID),
+    primary key (termID,testName),
+    foreign key (termID) references terms(termID) on delete cascade
+    foreign key (pageID) references courses(pageID) on delete cascade)auto_increment=10000
+
+
+create table question_pool(
+    testID int(6),
+    qID int(6) auto_increment,
+    question_type varchar(50),
+    question varchar(2000),
+    weight int(6),
+    A varchar(50),
+    B varchar(50),
+    C varchar(50),
+    D varchar(50),
+    answer varchar(50),
+    state int(6),
+    unique key (qID),
+    foreign key (testID) references test(testID) on delete cascade)auto_increment=2423
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+create table students(
+    studentID varchar(20),
+    firstName varchar(20),
+    lastName varchar(20),
+    password varchar(75),
+    securityQuestion varchar(50),
+    securityAnswer varchar(20),
+    unityId varchar(50),
+    primary key (studentID),
+    unique key(unityId))
+
+
+create table studies(
+    studyId varchar(20),
+    primary key (studyId),
+    courseId varchar(20),
+    studentId varchar(20),
+    username varchar(50),
+    foreign key(username) references users(username) on delete cascade)
+
+
+create table enroll(
+    studentID varchar(20),
+    pageID int(6),
+    termID int(6),
+    primary key(studentID,termID),
+    foreign key (studentID) references students(studentID) on delete cascade,
+    foreign key (pageID) references terms(pageID) on delete cascade,
+    foreign key (termID) references terms(termID) on delete cascade)
+
+
+create table anonymous(
+    testID int(6),
+    answer varchar(50),
+    foreign key(testID) references question_pool(testID) on delete cascade)
+    
+
+    

@@ -1,0 +1,83 @@
+<html>
+<head>
+<title>Sign Up</title>
+<script>
+function validateForm()
+{
+var fname = document.forms["myForm"]["first_name"].value;
+var lname = document.forms["myForm"]["last_name"].value;
+var uname = document.forms["myForm"]["username"].value;
+var pwd=document.forms["myForm"]["password"].value;
+var pwd2=document.forms["myForm"]["password2"].value;
+var question=document.forms["myForm"]["question"].value;
+var answer=document.forms["myForm"]["answer"].value;
+var emailID=document.forms["myForm"]["emailID"].value;
+
+if(fname==""||lname==""||uname==""||pwd==""||pwd2==""||question==""||answer==""||emailID=="")
+{
+ window.alert('Fields cannot be empty. Try again');
+ return false;
+}
+else if(pwd!=pwd2)
+{
+window.alert('Passwords do not match! Retry. ');
+return false;
+}
+}
+</script>
+<link rel="stylesheet" type="text/css" href="bootstrap.css">
+</head>
+
+<body background="background.jpg">
+<p><h4><a href="index.html">Back</a></h4></p>
+<center>
+<h1>Sign Up</h1>
+<br/>
+<form name="myForm" onsubmit="return validateForm()" action="signup1.php" method="post">
+<table>
+<tr>
+<td><label name="first_name">First Name</td>
+<td><input type="text" name="first_name" id="first_name" /><br/></td>
+</tr>
+
+<tr>
+<td><label name="last_name">Last Name</td>
+<td><input type="text" name="last_name" id="last_name" /><br/></td>
+</tr>
+
+<tr>
+<td><label name="username">Username</td>
+<td><input type="text" name="username" id="username" /><br/></td>
+</tr>
+
+<tr>
+<td><label name="password">Password</td>
+<td><input type="password" name="password" id="password" /><br/></td>
+</tr>
+
+<tr>
+<td><label name="password2">Retype Password</td>
+<td><input type="password" name="password2" id="password2" /><br/></td>
+</tr>
+
+<tr>
+<td><label name="emailID">EmailID</td>
+<td><input type="email" name="emailID" id="emailID" /><br/></td>
+</tr>
+
+<tr>
+<td><label name="question">Security Question</td>
+<td><input type="text" name="question" id="question" /><br/></td>
+</tr>
+
+<tr>
+<td><label name="answer">Answer</td>
+<td><input type="text" name="answer" id="answer" /><br/></td>
+</tr>
+</table>
+
+<input type="submit" value="Submit" />
+</form>
+<center>
+</body>
+</html>
